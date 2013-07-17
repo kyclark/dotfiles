@@ -46,6 +46,8 @@ map ,m :set tw=70
 " Check POD in current file
 map ,p :w ! perl -MPod::Checker -e 'podchecker shift' %
 
+map ,c :w ! perl -cw %
+
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
   au BufRead *.html,*.svg,*.tmpl,*.sql call HTMLStuff()
@@ -70,7 +72,7 @@ function JavaScriptStuff()
     set ts=2
     set sw=2
     set tw=0
-    set equalprg=jsl
+    set equalprg=jslint
 
     " REM (comment) out highlighted section
     map ,r :s/^/\/\//
@@ -78,7 +80,7 @@ function JavaScriptStuff()
     " Un-REM
     map ,u :s/^\/\///
 
-    map ,c :w ! jsl -process %
+    map ,c :w ! jslint -process %
 
 endfunction
 
