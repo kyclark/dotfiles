@@ -25,7 +25,7 @@ nmap :W :w
 nmap :X :x
 nmap :U :u
 
-iab psb  #!/usr/bin/env perluse strict;use warnings;
+iab psb  #!/usr/bin/env perluse strict;use warnings;use feature 'say';use autodie;
 iab pdbg use Data::Dumper 'Dumper';warn "data = ", Dumper(), "\n";h
 
 " Check with Perl::Critic
@@ -47,6 +47,11 @@ map ,m :set tw=70
 map ,p :w ! perl -MPod::Checker -e 'podchecker shift' %
 
 map ,c :w ! perl -cw %
+
+" REM (comment) out highlighted section
+map ,r :s/^/#/
+" Un-REM
+map ,u :s/^#//
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
