@@ -1,4 +1,13 @@
-version 4.0
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'MatchTagAlways'
+
+filetype plugin indent on 
+
 set backspace=2
 set expandtab
 set noerrorbells
@@ -59,7 +68,7 @@ if has("autocmd")
   au BufRead *.js,*.jade call JavaScriptStuff()
   au BufRead *.json call JSONStuff()
   au BufRead *.pod call PODStuff()
-  au BufRead *.pl,*.pm call PerlStuff()
+  au BufRead *.pl,*.pm,*.PL call PerlStuff()
 endif
 
 function GetPerlFold() 
