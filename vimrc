@@ -26,7 +26,7 @@ nmap :X :x
 nmap :U :u
 
 iab psb  #!/usr/bin/env perluse strict;use warnings;use feature 'say';use autodie;
-iab pdbg use Data::Dumper 'Dumper';warn "data = ", Dumper(), "\n";h
+iab pdb use Data::Dumper 'Dumper';warn "data = ", Dumper(), "\n";h
 
 " Check with Perl::Critic
 map ,z :w ! perlcritic %
