@@ -64,7 +64,7 @@ map ,u :s/^#//
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
-  au BufRead *.html,*.svg,*.tmpl,*.sql call HTMLStuff()
+  au BufRead *.html,*.svg,*.tmpl,*.tt,*.sql call HTMLStuff()
   au BufRead *.js,*.jade call JavaScriptStuff()
   au BufRead *.json call JSONStuff()
   au BufRead *.pod call PODStuff()
