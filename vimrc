@@ -114,6 +114,8 @@ function HTMLStuff()
     set sw=2
     set tw=0
     set equalprg=tidy
+    set syntax=html
+    set filetype=html
 endfunction
 
 function LispStuff()
