@@ -163,7 +163,9 @@ endfunction
 function HaskellStuff()
     map ,r :s/^/--/
     map ,u :s/^--//
-    map ,c hlint %
+    map ,f :%!brittany --indent 4
+    set ts=4
+    set sw=4
 endfunction
 
 function Perl5Stuff()
@@ -235,8 +237,8 @@ endfunction
 function PythonStuff()
     set filetype=python
     set et
-    set ts=2
-    set sw=2
+    set ts=4
+    set sw=4
     set tw=0
 
     map ,r :s/^/#/
