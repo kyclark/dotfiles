@@ -31,6 +31,7 @@ map Q NUL
 nmap :U :u
 nmap :W :w
 nmap :X :x
+map ,d :SyntasticReset
 map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
 
