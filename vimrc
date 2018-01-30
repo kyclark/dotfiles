@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -73,6 +74,8 @@ let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
 let g:polyglot_disabled = ['elm']
+
+let g:rustfmt_autosave = 1
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
@@ -149,8 +152,8 @@ endfunction
 function BashStuff()
     set filetype=sh
     set et
-    set ts=2
-    set sw=2
+    set ts=4
+    set sw=4
     set tw=0
     setlocal foldmethod=expr 
 
