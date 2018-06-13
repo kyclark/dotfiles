@@ -247,8 +247,7 @@ function PythonStuff()
 
     map ,r :s/^/#/
     map ,u :s/^#//
-
-    map ,c :w ! python -m py_compile %
+    map ,w :%s/\s\+$//
 endfunction
 
 function ElmStuff()
