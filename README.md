@@ -1,4 +1,3 @@
-Ken's .vimrc
-============
+# Some Dotfiles
 
-Just trying to sync among my machines.
+For your entertainment.
