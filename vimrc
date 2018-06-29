@@ -66,6 +66,7 @@ let g:hindent_indent_size = 4
 
 let g:airline_left_sep= '░'
 let g:airline_right_sep= '░'
+let g:syntastic_mode_map = { "mode": "passive" }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
@@ -76,6 +77,7 @@ let g:elm_syntastic_show_warnings = 1
 let g:polyglot_disabled = ['elm']
 
 let g:rustfmt_autosave = 1
+let g:syntastic_python_checkers = ['pylint']
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
@@ -245,6 +247,9 @@ function PythonStuff()
     set sw=4
     set tw=0
 
+    map ,c :SyntasticCheck
+    map ,d :SyntasticReset
+    map ,n :lnext
     map ,r :s/^/#/
     map ,u :s/^#//
     map ,w :%s/\s\+$//
