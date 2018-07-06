@@ -77,6 +77,7 @@ let g:elm_syntastic_show_warnings = 1
 let g:polyglot_disabled = ['elm']
 
 let g:rustfmt_autosave = 1
+let g:syntastic_bash_checkers = ['shellcheck']
 let g:syntastic_python_checkers = ['pylint']
 
 if has("autocmd")
@@ -159,11 +160,10 @@ function BashStuff()
     set tw=0
     setlocal foldmethod=expr 
 
-    " REM (comment) out highlighted section
     map ,r :s/^/#/
-
-    " Un-REM
     map ,u :s/^#//
+    map ,c :SyntasticCheck
+    map ,d :SyntasticReset
 endfunction
 
 function HaskellStuff()
