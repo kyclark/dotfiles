@@ -246,6 +246,7 @@ function PythonStuff()
     set ts=4
     set sw=4
     set tw=0
+    set equalprg=yapf
 
     map ,c :SyntasticCheck
     map ,d :SyntasticReset
@@ -253,6 +254,7 @@ function PythonStuff()
     map ,r :s/^/#/
     map ,u :s/^#//
     map ,w :%s/\s\+$//
+    autocmd BufWritePre *.py 0,$!yapf
 endfunction
 
 function ElmStuff()
