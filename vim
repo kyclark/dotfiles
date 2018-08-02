@@ -1,6 +1,7 @@
 " Install Pathogen:
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " cd ~/.vim/bundle && git clone https://github.com/neovimhaskell/haskell-vim.git
+" git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
 execute pathogen#infect()
 
 " Install Vim Plug:
@@ -53,6 +54,7 @@ set incsearch
 set title
 let loaded_matchparen=1
 
+let g:rustfmt_autosave = 1
 let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo      = 1 " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax      = 1 " to enable highlighting of `proc`
@@ -92,6 +94,7 @@ if has("autocmd")
   au BufRead *.hs call HaskellStuff()
   au BufRead *.sh call BashStuff()
   au BufRead *.elm call ElmStuff()
+  au BufRead *.rs call RustStuff()
 endif
 
 function JavaScriptStuff()
@@ -255,6 +258,17 @@ function PythonStuff()
     map ,u :s/^#//
     map ,w :%s/\s\+$//
     autocmd BufWritePre *.py 0,$!yapf
+endfunction
+
+function RustStuff()
+    set filetype=rust
+    set ts=4
+    set sw=4
+    set tw=0
+    set et
+
+    map ,r :s/^/\/\/ /
+    map ,u :s/^\/\/ //
 endfunction
 
 function ElmStuff()
