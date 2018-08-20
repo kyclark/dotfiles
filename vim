@@ -254,7 +254,8 @@ function PythonStuff()
     map ,r :s/^/#/
     map ,u :s/^#//
     map ,w :%s/\s\+$//
-    autocmd BufWritePre *.py 0,$!yapf
+    map ,f :0,$!yapf
+    "autocmd BufWritePre *.py 0,$!yapf
 endfunction
 
 function ElmStuff()
