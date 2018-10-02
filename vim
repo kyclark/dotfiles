@@ -17,6 +17,7 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
 Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 filetype plugin indent on
@@ -41,6 +42,7 @@ set pastetoggle=<C-p>
 let hlstate=0
 nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
 
+let mapleader = ","
 
 set backspace=2
 set expandtab
@@ -55,6 +57,7 @@ set title
 let loaded_matchparen=1
 
 let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'pbcopy'
 let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo      = 1 " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax      = 1 " to enable highlighting of `proc`
@@ -78,7 +81,7 @@ let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
 let g:polyglot_disabled = ['elm']
 
-let g:rustfmt_autosave = 1
+let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
 let g:syntastic_python_checkers = ['pylint']
 
@@ -95,7 +98,7 @@ if has("autocmd")
   au BufRead *.hs call HaskellStuff()
   au BufRead *.sh call BashStuff()
   au BufRead *.elm call ElmStuff()
-  au BufRead *.rs call RustStuff()
+  "au BufRead *.rs call RustStuff()
 endif
 
 function JavaScriptStuff()
@@ -107,12 +110,12 @@ function JavaScriptStuff()
     set equalprg=jslint
 
     " REM (comment) out highlighted section
-    map ,r :s/^/\/\//
+    map <Leader>r :s/^/\/\//
 
     " Un-REM
-    map ,u :s/^\/\///
+    map <Leader>u :s/^\/\///
 
-    map ,c :w ! jslint -process %
+    map <Leader>c :w ! jslint -process %
 endfunction
 
 function JSONStuff()
@@ -123,7 +126,7 @@ function JSONStuff()
     set tw=0
     set equalprg=jsonlint
 
-    map ,c :w ! jsonlint %
+    map <Leader>c :w ! jsonlint %
 endfunction
 
 function HTMLStuff()
@@ -163,16 +166,16 @@ function BashStuff()
     set tw=0
     setlocal foldmethod=expr 
 
-    map ,r :s/^/#/
-    map ,u :s/^#//
-    map ,c :SyntasticCheck
-    map ,d :SyntasticReset
+    map <Leader>r :s/^/#/
+    map <Leader>u :s/^#//
+    map <Leader>c :SyntasticCheck
+    map <Leader>d :SyntasticReset
 endfunction
 
 function HaskellStuff()
-    map ,r :s/^/--/
-    map ,u :s/^--//
-    map ,f :%!brittany --indent 4
+    map <Leader>r :s/^/--/
+    map <Leader>u :s/^--//
+    map <Leader>f :%!brittany --indent 4
     set ts=4
     set sw=4
 endfunction
@@ -267,9 +270,10 @@ function RustStuff()
     set sw=4
     set tw=0
     set et
+    map ,h O// <esc>50a-<esc>
 
-    map ,r :s/^/\/\/ /
-    map ,u :s/^\/\/ //
+    "map ,r :s/^/\/\/ /
+    "map ,u :s/^\/\/ //
 endfunction
 
 function ElmStuff()
