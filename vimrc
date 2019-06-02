@@ -49,6 +49,7 @@ set timeout
 set timeoutlen=3000
 set incsearch
 set title
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 let loaded_matchparen=1
 
 let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
