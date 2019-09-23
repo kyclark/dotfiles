@@ -10,14 +10,15 @@ execute pathogen#infect()
 " Then ':PlugInstall' in vim
 call plug#begin('~/.vim/plugged')
 Plug 'elmcast/elm-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'scrooloose/syntastic'
-Plug 'vim-airline/vim-airline'
+Plug 'mindriot101/vim-yapf'
 Plug 'morhetz/gruvbox'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-sensible'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 filetype plugin indent on
@@ -57,6 +58,7 @@ set title
 let loaded_matchparen=1
 
 let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'pbcopy'
 let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo      = 1 " to enable highlighting of `mdo` and `rec`
@@ -98,7 +100,7 @@ if has("autocmd")
   au BufRead *.hs call HaskellStuff()
   au BufRead *.sh call BashStuff()
   au BufRead *.elm call ElmStuff()
-  "au BufRead *.rs call RustStuff()
+  au BufRead *.rs call RustStuff()
 endif
 
 function JavaScriptStuff()
@@ -260,7 +262,7 @@ function PythonStuff()
     map ,r :s/^/#/
     map ,u :s/^#//
     map ,w :%s/\s\+$//
-    map ,f :0,$!yapf
+    map ,f :Yapf
     "autocmd BufWritePre *.py 0,$!yapf
 endfunction
 
