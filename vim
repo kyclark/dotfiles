@@ -98,7 +98,7 @@ if has("autocmd")
   au BufRead *.hs call HaskellStuff()
   au BufRead *.sh call BashStuff()
   au BufRead *.elm call ElmStuff()
-  "au BufRead *.rs call RustStuff()
+  au BufRead *.rs call RustStuff()
 endif
 
 function JavaScriptStuff()
@@ -270,10 +270,8 @@ function RustStuff()
     set sw=4
     set tw=0
     set et
-    map ,h O// <esc>50a-<esc>
-
-    "map ,r :s/^/\/\/ /
-    "map ,u :s/^\/\/ //
+    map ,f :RustFmt
+    map ,h o// <esc>50a-<esc>
 endfunction
 
 function ElmStuff()
