@@ -86,7 +86,7 @@ let g:polyglot_disabled = ['elm']
 
 let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['flake8']
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
