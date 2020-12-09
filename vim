@@ -38,6 +38,7 @@ nmap :X :x
 map ,d :SyntasticReset
 map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
+set vb
 
 " ctrl+c to toggle highlight.
 let hlstate=0
@@ -82,7 +83,7 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
-let g:polyglot_disabled = ['elm']
+" let g:polyglot_disabled = ['elm']
 
 let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
