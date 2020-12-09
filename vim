@@ -40,7 +40,6 @@ map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
 set vb
 
-
 " ctrl+c to toggle highlight.
 let hlstate=0
 nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
@@ -84,7 +83,7 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
-let g:polyglot_disabled = ['elm']
+" let g:polyglot_disabled = ['elm']
 
 let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
