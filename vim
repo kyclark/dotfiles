@@ -38,6 +38,8 @@ nmap :X :x
 map ,d :SyntasticReset
 map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
+set vb
+
 
 " ctrl+c to toggle highlight.
 let hlstate=0
