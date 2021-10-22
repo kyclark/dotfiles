@@ -40,6 +40,10 @@ map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
 set vb
 
+set spelllang=en
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+map ,s :setlocal spell spelllang=en_us<CR>
+
 " ctrl+c to toggle highlight.
 let hlstate=0
 nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
@@ -56,7 +60,7 @@ set timeout
 set timeoutlen=3000
 set incsearch
 set title
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:$,space:∙,tab:>-,trail:~,extends:>,precedes:<
 let loaded_matchparen=1
 
 let g:rustfmt_autosave = 1
