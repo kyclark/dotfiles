@@ -19,6 +19,7 @@ Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 filetype plugin indent on
@@ -92,6 +93,10 @@ let g:elm_syntastic_show_warnings = 1
 let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
 let g:syntastic_python_checkers = ['flake8']
+
+let g:ale_lint_on_save = 1
+let g:ale_linters = { "python": ["ruff"] }
+let g:ale_fixers = { "python": ["black", "ruff"] }
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
@@ -262,13 +267,15 @@ function PythonStuff()
     set tw=0
     set equalprg=yapf
 
-    map ,c :SyntasticCheck
+    map ,c :ALELint
+    "map ,c :SyntasticCheck
     map ,d :SyntasticReset
     map ,n :lnext
     map ,r :s/^/#/
     map ,u :s/^#//
     map ,w :%s/\s\+$//
-    map ,f :Yapf
+    " map ,f :Yapf
+    map ,f :%!black -q -
     "autocmd BufWritePre *.py 0,$!yapf
 endfunction
 
@@ -340,3 +347,4 @@ vmap <silent> # :call ToggleBlock()<CR>
 highlight Comment term=bold ctermfg=white
 
 set matchpairs+=<:>,«:»
+
