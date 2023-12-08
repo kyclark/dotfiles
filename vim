@@ -2,6 +2,7 @@
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " cd ~/.vim/bundle && git clone https://github.com/neovimhaskell/haskell-vim.git
 " git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+" git clone https://github.com/chiedojohn/vim-case-convert.git
 execute pathogen#infect()
 
 " Install Vim Plug:
@@ -139,6 +140,7 @@ function JSONStuff()
     set tw=0
     set equalprg=jsonlint
 
+    map <Leader>f :%!python3 -m json.tool
     map <Leader>c :w ! jsonlint %
 endfunction
 
