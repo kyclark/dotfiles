@@ -1,4 +1,4 @@
-" Install Pathogen:
+""" Install Pathogen:
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " cd ~/.vim/bundle && git clone https://github.com/neovimhaskell/haskell-vim.git
 " git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
@@ -36,14 +36,17 @@ map Q NUL
 nmap :U :u
 nmap :W :w
 nmap :X :x
+map ,z :%!perl -npe 's/(?<=\S)=(?=\S)/ = /g'
 map ,d :SyntasticReset
 map <C-n> :NERDTreeToggle<CR>
 set pastetoggle=<C-p>
 set vb
+set scrolloff=8
+" set cursorline
 
-set spelllang=en
-set spellfile=$HOME/.vim/spell/en.utf-8.add
-map ,s :setlocal spell spelllang=en_us<CR>
+" set spelllang=en
+" set spellfile=$HOME/.vim/spell/en.utf-8.add
+" map ,s :setlocal spell spelllang=en_us<CR>
 
 " ctrl+c to toggle highlight.
 let hlstate=0
@@ -104,7 +107,9 @@ if has("autocmd")
   au BufRead *.js,*.jade call JavaScriptStuff()
   au BufRead *.json call JSONStuff()
   au BufRead *.pod call PODStuff()
+  au BufRead *.wdl call WDLStuff()
   au BufRead *.pl6,*.p6 call Perl6Stuff()
+  au BufRead *.wdl call WdlStuff()
   au BufRead *.pl,*.pm,*.PL call Perl5Stuff()
   au BufRead *.py call PythonStuff()
   au BufRead *.rb call RubyStuff()
@@ -161,6 +166,17 @@ function LispStuff()
     set equalprg=lisp
     set showmatch
     set matchtime=1
+endfunction
+
+function WDLStuff()
+    set filetype=wdl
+    set et
+    set ts=2
+    set sw=2
+    set tw=68
+    map <Leader>r :s/^/# /
+    map <Leader>u :s/^# //
+    let g:NERDCustomDelimiters = { 'l': { 'left': '#','right': '' } }
 endfunction
 
 function PODStuff()
@@ -241,6 +257,17 @@ function Perl5Stuff()
     set iskeyword-=,
 endfunction
 
+function WdlStuff()
+    set et
+    set ts=4
+    set sw=4
+    set tw=0
+    set filetype=wdl
+    map ,r :s/^/#/
+    map ,u :s/^#//
+    map ,c :w ! miniwdl check %
+endfunction
+
 function Perl6Stuff()
     set et
     set ts=4
@@ -315,11 +342,11 @@ function RubyStuff()
 endfunction
 
 " Work out what the comment character is, by filetype...
-autocmd FileType             *sh,awk,python,perl,perl6,ruby    let b:cmt = exists('b:cmt') ? b:cmt : '#'
-autocmd FileType             vim                               let b:cmt = exists('b:cmt') ? b:cmt : '"'
-autocmd BufNewFile,BufRead   *.vim,.vimrc                      let b:cmt = exists('b:cmt') ? b:cmt : '"'
-autocmd BufNewFile,BufRead   *                                 let b:cmt = exists('b:cmt') ? b:cmt : '#'
-autocmd BufNewFile,BufRead   *.p[lm],.t                        let b:cmt = exists('b:cmt') ? b:cmt : '#'
+autocmd FileType             *sh,awk,python,perl,perl6,ruby,wdl let b:cmt = exists('b:cmt') ? b:cmt : '#'
+autocmd FileType             vim                                let b:cmt = exists('b:cmt') ? b:cmt : '"'
+autocmd BufNewFile,BufRead   *.vim,.vimrc                       let b:cmt = exists('b:cmt') ? b:cmt : '"'
+autocmd BufNewFile,BufRead   *                                  let b:cmt = exists('b:cmt') ? b:cmt : '#'
+autocmd BufNewFile,BufRead   *.p[lm],.t                         let b:cmt = exists('b:cmt') ? b:cmt : '#'
 
 " Work out whether the line has a comment then reverse that condition...
 function! ToggleComment ()
@@ -342,7 +369,7 @@ function! ToggleComment ()
 endfunction
 
 nmap <silent> # :call ToggleComment()<CR>j0
-vmap <silent> # :call ToggleBlock()<CR>
+vmap <silent> # :call ToggleComment()<CR>
 
 highlight Comment term=bold ctermfg=white
 
