@@ -13,6 +13,8 @@ alias ls='ls -FG'
 alias djobs='dx find jobs --all-projects --user self --state running'
 
 path+=~/.local/bin
+path+=/opt/homebrew/bin
+path+=~/.cargo/bin
 path+=/usr/local/Cellar
 path+=/usr/local/Cellar/perl/5.34.0/bin
 path+=/usr/local/Cellar/perl/5.38.0/bin
@@ -132,3 +134,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export NODE_OPTIONS=--openssl-legacy-provider
+. "$HOME/.cargo/env"
