@@ -10,7 +10,7 @@ alias ws='dx run -imax_session_length="1d" cloud_workstation --ssh -y'
 alias wsg='dx run -imax_session_length="1d" cloud_workstation --ssh --instance-type mem2_ssd1_gpu_x16 -y'
 alias bigws='dx run cloud_workstation -imax_session_length="1d" --ssh -y --instance-type mem1_ssd2_v2_x72'
 alias ls='ls -FG'
-alias djobs='dx find jobs --all-projects --user self --state running'
+alias dcls='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Status}}"'
 
 path+=~/.local/bin
 path+=/opt/homebrew/bin
