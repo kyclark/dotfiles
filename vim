@@ -304,7 +304,7 @@ function PythonStuff()
     map ,u :s/^#//
     map ,w :%s/\s\+$//
     " map ,f :Yapf
-    map ,f :%!black -q -
+    map ,f :%!black -q --line-length 78 -
     "autocmd BufWritePre *.py 0,$!yapf
 endfunction
 
