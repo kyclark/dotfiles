@@ -96,10 +96,10 @@ let g:elm_syntastic_show_warnings = 1
 
 let g:formatters_rust = ['rustfmt']
 let g:syntastic_bash_checkers = ['shellcheck']
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['ty']
 
 let g:ale_lint_on_save = 1
-let g:ale_linters = { "python": ["ruff"] }
+let g:ale_linters = { "python": ["ty"] }
 let g:ale_fixers = { "python": ["black", "ruff"] }
 
 if has("autocmd")
