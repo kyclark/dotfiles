@@ -1,0 +1,38 @@
+[language-server.rust-analyzer.config]
+cargo.allFeatures = true
+cargo.loadOutDirsFromCheck = true
+cargo.buildScripts.enable = true
+check.command = "clippy"
+checkOnSave = true
+procMacro.enable = true
+inlayHints.bindingModeHints.enable = false
+inlayHints.chainingHints.enable = true
+inlayHints.closingBraceHints.enable = true
+inlayHints.closingBraceHints.minLines = 25
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.lifetimeElisionHints.useParameterNames = true
+inlayHints.maxLength.enable = true
+inlayHints.maxLength.value = 25
+inlayHints.parameterHints.enable = true
+inlayHints.reborrowHints.enable = "skip_trivial"
+inlayHints.renderColons.enable = true
+inlayHints.typeHints.enable = true
+inlayHints.typeHints.hideClosureInitialization = false
+inlayHints.typeHints.hideNamedConstructor = false
+
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "elm"
+auto-format = true
+formatter = { command = "elm-format" , args = ["--stdin"] }
+language-servers = [ "elm-language-server" ]
+
+[[language]]
+name = "python"
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["pylsp", "pyright"]
