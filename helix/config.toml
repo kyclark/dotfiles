@@ -19,7 +19,7 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
-character = "╎"
+character = "│"
 
 [editor.file-picker]
 hidden = false
