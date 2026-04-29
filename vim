@@ -1,7 +1,7 @@
 """ Install Pathogen:
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " cd ~/.vim/bundle && git clone https://github.com/neovimhaskell/haskell-vim.git
-" git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+" rust.vim is managed by vim-plug below — do NOT also clone to ~/.vim/bundle/
 " git clone https://github.com/chiedojohn/vim-case-convert.git
 execute pathogen#infect()
 
@@ -14,6 +14,9 @@ Plug 'elmcast/elm-vim'
 Plug 'mindriot101/vim-yapf'
 Plug 'morhetz/gruvbox'
 Plug 'rust-lang/rust.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mhinz/vim-crates'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -99,8 +102,23 @@ let g:syntastic_bash_checkers = ['shellcheck']
 let g:syntastic_python_checkers = ['ty']
 
 let g:ale_lint_on_save = 1
-let g:ale_linters = { "python": ["ty"] }
-let g:ale_fixers = { "python": ["black", "ruff"] }
+
+" vim-lsp keybindings (active when rust-analyzer attaches to a buffer)
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+endfunction
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+let g:ale_linters = { "python": ["ty"], "rust": ["analyzer"] }
+let g:ale_fixers = { "python": ["black", "ruff"], "rust": ["rustfmt"] }
 
 if has("autocmd")
   au BufRead *.sxp,*.lisp call LispStuff()
@@ -118,6 +136,7 @@ if has("autocmd")
   au BufRead *.sh call BashStuff()
   au BufRead *.elm call ElmStuff()
   au BufRead *.rs call RustStuff()
+  au BufRead Cargo.toml call crates#toggle()
 endif
 
 function JavaScriptStuff()
